@@ -11,6 +11,6 @@ describe("TaschenrechnerVerarbeitung", function(){
 
     it("muss das richtige Resultat ausrechnen", function(){
         taschenrechnerVerarbeitung.perform()
-        expect(taschenrechnerVerarbeitung.getResult).toBe(3 + 8)
+        expect(taschenrechnerVerarbeitung.getResult()).toBe(3 + 8)
     })
 })
