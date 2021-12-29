@@ -1,35 +1,19 @@
 describe("ViewModel", function(){
     var viewModel
-    var taste0
-    var taste1
-    var taste2
-    var taste3
-    var taste4
-    var taste5
-    var taste6
-    var taste7
-    var taste8
-    var taste9
-    var tasteNegativ
-    var tasteKomma
-    var tasteQuadrat
-    var tasteCE
-    var tasteBackspace
-    var tasteAddition
-    var tasteSubtraktion
-    var tasteMultiplikation
-    var tasteDivision
-    var tasteGleich
-    var anzeige
-
-    //für alle Tasten und die Anzeige muss ein SpyObjekt erstellt werden
+    var taschenrechnerVerarbeitung
+    var body = document.getElementsByTagName("body")[0]
 
     
 
     beforeEach(function(){
         viewModel = new ViewModel()
+        taschenrechnerVerarbeitung = jasmine.createSpyObj('TaschenrechnerVerarbeitung', {
+            perform: undefined,
+            getResult: undefined
+        })
         viewModel.render() 
     })
+
 
     it("muss die Zahlentasten rendern", function(){
         for(var zahl = 0; zahl <=9; zahl++){
@@ -83,19 +67,24 @@ describe("ViewModel", function(){
 
     //Die Tests oberhalb von hier testen das GUI
 
-    it("muss taschenrechnerverarbeitung.getResult() aufrufen", function(){
-        viewModel.onTasteGleichClicked()
-        expect(taschenrechnerVerarbeitung.getResult).toHaveBeenCalled()
-    })
-
-    it("muss taschenrechnerVerarbeitung.perform() aufrufen", function(){
+    it("muss taschenrechnerVerarbeitung.perform() aufrufen, wenn man auf das Gleich klickt", function(){
         viewModel.onTasteGleichClicked()
         expect(taschenrechnerVerarbeitung.perform).toHaveBeenCalled()
     })
 
+    it("muss taschenrechnerVerarbeitung.getResult() aufrufen, wenn man auf das Gleich klickt", function(){
+        viewModel.onTasteGleichClicked()
+        expect(taschenrechnerVerarbeitung.getResult).toHaveBeenCalled()
+    })
 
+    it("muss taschenrechnerVerarbeitung.perform() aufrufen, wenn man auf die Quadrat-Taste klickt", function(){
+        viewModel.onTasteQuadratClicked()
+        expect(taschenrechnerVerarbeitung.perform).toHaveBeenCalled()
+    })
 
+    it("muss taschenrechnerVerarbeitung.getResult() aufrufen, wenn man auf die Quadrat-Taste klickt", function(){
+        viewModel.onTasteQuadratClicked()
+        expect(taschenrechnerVerarbeitung.getResult).toHaveBeenCalled()
+    })
 
-    
-    
 })

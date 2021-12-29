@@ -5,7 +5,7 @@ describe("TaschenrechnerVerarbeitung", function(){
         taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(3, "+", 8) //Taschenrechnerverarbeitung(zahl1, Operator, zahl2)
     })
 
-    it("muss erstellt werden können", function(){
+    it("muss erstellt werden koennen", function(){
         expect(taschenrechnerVerarbeitung).toBeTruthy()
     })
 
@@ -13,7 +13,4 @@ describe("TaschenrechnerVerarbeitung", function(){
         taschenrechnerVerarbeitung.perform()
         expect(taschenrechnerVerarbeitung.getResult).toBe(3 + 8)
     })
-
-    
-
 })

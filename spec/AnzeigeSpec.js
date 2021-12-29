@@ -5,7 +5,7 @@ describe("Anzeige", function(){
         anzeige = new Anzeige();
     })
 
-    it("muss erstellt werden können", function(){
+    it("muss erstellt werden koennen", function(){
         expect(anzeige).toBeTruthy();
     })
 })

@@ -5,7 +5,7 @@ describe("Taste", function(){
         taste = new Taste()
     })
 
-    it("muss erstellt werden können", function(){
+    it("muss erstellt werden koennen", function(){
         expect(taste).toBeTruthy()
     })
 })
