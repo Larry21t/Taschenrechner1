@@ -1,24 +1,14 @@
 class ViewModel{
     render(){
         var body = document.getElementsByTagName("body")[0]
-        // var taste0
-        // var taste1
-        // var taste2
-        // var taste3
-        // var taste4
-        // var taste5
-        // var taste6
-        // var taste7
-        // var taste8
-        // var taste9
-        // var zahlenTasten = [taste0, taste1, taste2, taste3, taste4, taste5, taste6, taste7, taste8, taste9]
+       
         var taschenrechner = document.getElementById("taschenrechner")
         if(taschenrechner){
             body.removeChild(taschenrechner)
         }
         taschenrechner = document.createElement("div")
         taschenrechner.id = "taschenrechner"
-        // zahlenTasten.forEach(element => this.eigenschaftenZahlentastenSetzen(element, taschenrechner))
+        
         var taste0 = new Taste()
         taste0.tastenText = '0'
         taste0.tastenID = 'taste0'
@@ -32,18 +22,12 @@ class ViewModel{
         body.appendChild(taschenrechner)
     }
 
-    // eigenschaftenZahlentastenSetzen(element, taschenrechner){
-    //     element = new Taste()
-    //     element.tastenText = `6`
-    //     element.tastenID = `${element.tastenText}`
-    //     element.onclickFunction = this.onTasteNumberClicked
-    //     taschenrechner.appendChild(element.tastenElement)
-    // }
+    //evtl. könnte man render() verbessern indem man ein Array für alle Zahlentasten macht und anschliessend mit forEach() oder einer Schleife die Eigenschaften der Zahlentasten festlegt
+    //sonst muss für jede Taste einzeln immer new Taste() gemacht und die Eigenschaften festgelegt werden.
 
     onTasteNumberClicked(){
         
     }
 
-    //wie könnte man es verbessern, damit man nicht für jede einzelne Zahlentaste die Eigenschaften separat eingeben muss? Evtl. mit einem Array und forEach()
-
+    
 }
