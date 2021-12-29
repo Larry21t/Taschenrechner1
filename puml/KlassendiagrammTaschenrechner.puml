@@ -1,0 +1,44 @@
+@startuml Taschenrechner Klassendiagramm 
+class App
+
+class Taste{
+    constructor()
+    set tastenText()
+    set tastenID()
+    set onclickFunction()
+    get tastenElement()
+    get tastenText()
+}
+class Anzeige{
+    constructor()
+    set anzeigeText()
+    set anzeigeID()
+    get anzeigeText()
+    get anzeigeElement()
+
+}
+
+class Taschenrechnerverarbeitung{
+    constructor(zahl1, Operator, zahl2)
+    perform()
+    getResult()
+}
+
+class ViewModel{
+    render()
+    onTasteNumberClicked()
+    onTasteOperatorClicked()
+    onTasteGleichClicked()
+    onTasteKommaClicked()
+    onTasteNegativClicked()
+    onTasteQuadratClicked()
+    onTasteCEClicked()
+    onTasteBackspaceClicked()
+}
+
+App --> ViewModel
+ViewModel --> Taste
+ViewModel --> Anzeige
+ViewModel --> Taschenrechnerverarbeitung
+
+@enduml

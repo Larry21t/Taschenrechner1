@@ -1,0 +1,20 @@
+@startuml Taschenrechner Sequenzdiagramm
+
+
+participant "ViewModel" as ViewModel
+participant "Taste :HTMLElement" as Taste
+participant "Taschenrechnerverarbeitung" as Taschenrechnerverarbeitung
+participant "Anzeige :HTMLElement" as Anzeige
+
+
+ViewModel -> Taste: render()
+ViewModel -> Anzeige: render()
+ViewModel -> Taschenrechnerverarbeitung: getResult()
+ViewModel -> Taschenrechnerverarbeitung: perform()
+ViewModel -> Anzeige: set anzeigeText()
+ViewModel -> Taste: set tastenText()
+ViewModel -> Taste: get tastenText()
+ViewModel -> Taste: set onclickFunction()
+
+
+@enduml
