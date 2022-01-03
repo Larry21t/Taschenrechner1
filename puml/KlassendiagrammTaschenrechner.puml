@@ -29,7 +29,7 @@ class ViewModel{
     onTasteNumberClicked()
     onTasteOperatorClicked()
     onTasteGleichClicked()
-    onTasteKommaClicked()
+    onTastePunktClicked()
     onTasteNegativClicked()
     onTasteQuadratClicked()
     onTasteCEClicked()

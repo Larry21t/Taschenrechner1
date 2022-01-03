@@ -25,8 +25,8 @@ describe("ViewModel", function(){
         expect(body).toHaveAChildnode("TD", "#tasteNegativ")
     })
 
-    it("muss die Komma-Taste rendern", function(){
-        expect(body).toHaveAChildnode("TD", "#tasteKomma")
+    it("muss die Punkt-Taste rendern", function(){
+        expect(body).toHaveAChildnode("TD", "#tastePunkt")
     })
 
     it("muss die Quadrat-Taste rendern", function(){
