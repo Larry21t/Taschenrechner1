@@ -6,11 +6,13 @@ class TaschenrechnerVerarbeitung{
     }
 
     perform(){
+        this.zahl1 = parseFloat(this.zahl1)
+        this.zahl2 = parseFloat(this.zahl2)
+
         if(this.operator == "+"){
             this.result = this.zahl1 + this.zahl2
         }
 
-        
         if(this.operator == "-"){
         this.result = this.zahl1 - this.zahl2
         }

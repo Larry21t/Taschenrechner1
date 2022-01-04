@@ -5,6 +5,16 @@ td {
     height: 40px;
     background-color: rgb(165, 165, 165);
     text-align: center;
-    font-size: xx-large;
-    
+    font-size: xx-large; 
+}
+
+
+.formatFuerAnzeige {
+    border: solid black;
+    border-width: 2px;
+    width: 290px;
+    height: 80px;
+    background-color: orange;
+    text-align: right;
+    font-size: xxx-large;
 }
