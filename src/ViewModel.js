@@ -144,21 +144,24 @@ class ViewModel{
 
     onTasteNumberClicked(){
         viewModel = new ViewModel()
-        if(textFuerAnzeige === 0){
-            textFuerAnzeige = this.textContent
+        textFuerAnzeige = textFuerAnzeige.toString() 
+        if(textFuerAnzeige === '0'){
+            if(this.textContent != '0'){ //sonst gibt es Zahlen mit vorangestellten Nullen, wie z.B. 0894
+                textFuerAnzeige = this.textContent 
+            } 
         }
         else{
             if(textFuerAnzeige.length < 9){
                 textFuerAnzeige = textFuerAnzeige + this.textContent
             }
-            
         }
         viewModel.render()
     }
 
     onTasteNegativClicked(){
+        viewModel = new ViewModel()
         textFuerAnzeige = textFuerAnzeige.toString()                    //String wird beim Rechnen in Integer umgewandelt, anschliessend kann nicht ein Integer mit includes() überprüft werden,
-        if(textFuerAnzeige != 0 && !textFuerAnzeige.includes('-')){     //deshalb muss der Integer(), also eine Zahl in einen String umgewandelt werden, dasselbe bei onTasteBackspaceClicked().
+        if(textFuerAnzeige != '0' && !textFuerAnzeige.includes('-')){     //deshalb muss der Integer(), also eine Zahl in einen String umgewandelt werden, dasselbe bei onTasteBackspaceClicked().
             textFuerAnzeige = '-' + textFuerAnzeige
         }
         else{
@@ -170,6 +173,7 @@ class ViewModel{
     }
 
     onTastePunktClicked(){
+        viewModel = new ViewModel()
         textFuerAnzeige = textFuerAnzeige.toString()  
         if(textFuerAnzeige.includes(this.textContent)){
 
@@ -181,12 +185,13 @@ class ViewModel{
     }
 
     onTasteGleichClicked(){
+        viewModel = new ViewModel()
         zahl2 = textFuerAnzeige
         var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
         taschenrechnerVerarbeitung.perform()
         textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
-        if(operator == undefined){ //wegen den Jasmine-Tests "muss taschenrechnerVerarbeitung.perform() und .getResult aufrufen, wenn man auf das Gleich drückt", dort wird onTasteGleichClicked ausgeführt. 
-            textFuerAnzeige = zahl2 //sonst wäre textFuerAnzeige = undefined und in der Anzeige würde keine Zahl angezeigt werden
+        if(operator == undefined){ 
+            textFuerAnzeige = zahl2 
         }
         viewModel.render()
     }
@@ -198,6 +203,7 @@ class ViewModel{
     }
 
     onTasteQuadratClicked(){
+        viewModel = new ViewModel()
         zahl1 = textFuerAnzeige
         zahl2 = zahl1
         operator = '*'
