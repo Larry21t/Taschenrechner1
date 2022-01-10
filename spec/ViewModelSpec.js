@@ -1,13 +1,10 @@
 describe("ViewModel", function(){
     var viewModel
-    // var taschenrechnerVerarbeitung
     var body = document.getElementsByTagName("body")[0]
 
-    
 
     beforeEach(function(){
         viewModel = new ViewModel()
-        taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung()
         viewModel.render() 
     })
 

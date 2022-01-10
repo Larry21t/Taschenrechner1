@@ -1,11 +1,7 @@
 describe("Anzeige", function(){
-    var anzeige
-
-    beforeEach(function(){
-        anzeige = new Anzeige();
-    })
 
     it("muss erstellt werden koennen", function(){
+        var anzeige = new Anzeige()
         expect(anzeige).toBeTruthy();
     })
 })

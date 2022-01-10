@@ -3,8 +3,7 @@ var viewModel
 var zahl1
 var zahl2
 var operator
-class ViewModel{
-    
+class ViewModel{  
     render(){
         var body = document.getElementsByTagName("body")[0]
         var taschenrechner = document.getElementById("taschenrechner")
@@ -204,12 +203,18 @@ class ViewModel{
 
     onTasteQuadratClicked(){
         viewModel = new ViewModel()
-        zahl1 = textFuerAnzeige
-        zahl2 = zahl1
-        operator = '*'
-        var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
+        zahl2 = textFuerAnzeige
+        if(operator === undefined){
+            operator = '*'
+        }
+        else{
+            var alterOperator = operator
+            operator = '*'
+        }
+        var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl2, operator, zahl2)
         taschenrechnerVerarbeitung.perform()
         textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
+        operator = alterOperator
         viewModel.render()
     }
 
