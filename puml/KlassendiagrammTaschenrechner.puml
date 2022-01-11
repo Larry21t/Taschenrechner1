@@ -9,13 +9,14 @@ class Taste{
     get tastenElement()
     get tastenText()
 }
+
 class Anzeige{
     constructor()
     set anzeigeText()
     set anzeigeID()
+    set anzeigeClass()
     get anzeigeText()
     get anzeigeElement()
-
 }
 
 class Taschenrechnerverarbeitung{

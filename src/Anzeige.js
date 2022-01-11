@@ -17,6 +17,7 @@ class Anzeige{
     get anzeigeText(){
         return this.anzeige.textContent
     }
+
     get anzeigeElement(){
         return this.anzeige
     }

@@ -1,16 +1,33 @@
 describe("TaschenrechnerVerarbeitung", function(){
-    var taschenrechnerVerarbeitung
-
-    beforeEach(function(){
-        taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(3, "+", 8) //Taschenrechnerverarbeitung(zahl1, Operator, zahl2)
-    })
 
     it("muss erstellt werden koennen", function(){
+        var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(3, "+", 8)
         expect(taschenrechnerVerarbeitung).toBeTruthy()
     })
 
-    it("muss das richtige Resultat ausrechnen", function(){
+    it("muss addieren koennen", function(){
+        var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(3, "+", 8)
         taschenrechnerVerarbeitung.perform()
         expect(taschenrechnerVerarbeitung.getResult()).toBe(3 + 8)
     })
+
+    it("muss subtrahieren koennen", function(){
+        var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(3, "-", 8)
+        taschenrechnerVerarbeitung.perform()
+        expect(taschenrechnerVerarbeitung.getResult()).toBe(3 - 8)
+    })
+
+    it("muss multiplizieren koennen", function(){
+        var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(3, "*", 8)
+        taschenrechnerVerarbeitung.perform()
+        expect(taschenrechnerVerarbeitung.getResult()).toBe(3 * 8)
+    })
+
+    it("muss dividieren koennen", function(){
+        var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(3, "/", 8)
+        taschenrechnerVerarbeitung.perform()
+        expect(taschenrechnerVerarbeitung.getResult()).toBe(3 / 8)
+    })
+
+
 })
