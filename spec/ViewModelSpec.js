@@ -127,10 +127,10 @@ describe("ViewModel", function(){
     it("muss das Resultat in der Anzeige anzeigen koennen", function(){
         var viewModel = new ViewModel()
         viewModel.render() 
-        var taste3 = new Taste()
-        taste3.onclickFunction = viewModel.onTasteNumberClicked
-        taste3.tastenText = '5'
-        taste3.clickOn()
+        var taste5 = new Taste()
+        taste5.onclickFunction = viewModel.onTasteNumberClicked
+        taste5.tastenText = '5'
+        taste5.clickOn()
         expect(anzeige.textContent).toBe('5')
         var tasteOperator = new Taste()
         tasteOperator.onclickFunction = viewModel.onTasteOperatorClicked
@@ -146,6 +146,17 @@ describe("ViewModel", function(){
         tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
         tasteGleich.clickOn()
         expect(anzeige.textContent).toBe('15')
+        tasteOperator.tastenText = '+'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('15')
+        taste5.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        var tasteQuadrat = new Taste()
+        tasteQuadrat.onclickFunction = viewModel.onTasteQuadratClicked
+        tasteQuadrat.clickOn()
+        expect(anzeige.textContent).toBe('25')
+        tasteGleich.clickOn()
+        expect(anzeige.textContent).toBe('40')
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -166,7 +177,7 @@ describe("ViewModel", function(){
         viewModel.render()
     })
 
-    it("muss die zuletzt eingegebene Ziffer löschen koennen", function(){
+    it("muss die zuletzt eingegebene Ziffer loeschen koennen", function(){
         var viewModel = new ViewModel()
         viewModel.render() 
         var taste2 = new Taste()
