@@ -12,7 +12,6 @@ class ViewModel{
         }
         taschenrechner = document.createElement("div")
         taschenrechner.id = "taschenrechner"
-        
         //Zahlentasten erstellen
         var taste0 = new Taste()
         taste0.tastenText = '0'
@@ -192,6 +191,7 @@ class ViewModel{
         if(operator == undefined){ 
             textFuerAnzeige = zahl2 
         }
+        operator = undefined
         viewModel.render()
     }
 
@@ -220,6 +220,9 @@ class ViewModel{
 
     onTasteCEClicked(){
         textFuerAnzeige = 0
+        zahl1 = undefined
+        zahl2 = undefined
+        operator = undefined
         viewModel.render()
     }
 

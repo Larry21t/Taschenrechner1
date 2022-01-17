@@ -1,7 +1,6 @@
 describe("ViewModel", function(){
     var body = document.getElementsByTagName("body")[0]
 
-
     it("muss die Zahlentasten rendern", function(){
         var viewModel = new ViewModel()
         viewModel.render() 
@@ -77,8 +76,6 @@ describe("ViewModel", function(){
     })
 
     //Die Tests oberhalb von hier testen das GUI
-
-    
     it("muss Zahlen in die Anzeige schreiben koennen", function(){
         var viewModel = new ViewModel()
         viewModel.render() 
@@ -157,6 +154,8 @@ describe("ViewModel", function(){
         expect(anzeige.textContent).toBe('25')
         tasteGleich.clickOn()
         expect(anzeige.textContent).toBe('40')
+        tasteGleich.clickOn()
+        expect(anzeige.textContent).toBe('40')
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -173,6 +172,12 @@ describe("ViewModel", function(){
         tasteQuadrat.onclickFunction = viewModel.onTasteQuadratClicked
         tasteQuadrat.clickOn()
         expect(anzeige.textContent).toBe('9')
+        tasteQuadrat.clickOn()
+        expect(anzeige.textContent).toBe('81')
+        var tasteGleich = new Taste()
+        tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
+        tasteGleich.clickOn()
+        expect(anzeige.textContent).toBe('81')
         textFuerAnzeige = 0
         viewModel.render()
     })
