@@ -24,6 +24,10 @@ class Taste{
         this.taste.onclick = clickFunction
     }
 
+    clickOn(){
+        this.taste.click()
+    }
+
     get tastenText(){
         return this.taste.textContent
     }

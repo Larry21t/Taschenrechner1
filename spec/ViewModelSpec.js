@@ -78,5 +78,112 @@ describe("ViewModel", function(){
 
     //Die Tests oberhalb von hier testen das GUI
 
+    
+    it("muss Zahlen in die Anzeige schreiben koennen", function(){
+        var viewModel = new ViewModel()
+        viewModel.render() 
+        var taste1 = new Taste()
+        taste1.onclickFunction = viewModel.onTasteNumberClicked
+        taste1.tastenText = '1'
+        taste1.clickOn()
+        expect(anzeige.textContent).toBe('1')
+        var taste2 = new Taste()
+        taste2.onclickFunction = viewModel.onTasteNumberClicked
+        taste2.tastenText = '2'
+        taste2.clickOn()
+        expect(anzeige.textContent).toBe('12')
+        var tastePunkt = new Taste()
+        tastePunkt.onclickFunction = viewModel.onTastePunktClicked
+        tastePunkt.tastenText = '.'
+        tastePunkt.clickOn()
+        expect(anzeige.textContent).toBe('12.')
+        taste1.clickOn()
+        expect(anzeige.textContent).toBe('12.1')
+        var tasteNegativ = new Taste()
+        tasteNegativ.onclickFunction = viewModel.onTasteNegativClicked
+        tasteNegativ.tastenText = '-'
+        tasteNegativ.clickOn()
+        expect(anzeige.textContent).toBe('-12.1')
+        textFuerAnzeige = 0
+        viewModel.render()
+    })
 
+    it("muss die Anzeige leeren und auf Null setzen koennen", function(){
+        var viewModel = new ViewModel()
+        viewModel.render() 
+        var taste1 = new Taste()
+        taste1.onclickFunction = viewModel.onTasteNumberClicked
+        taste1.tastenText = '1'
+        taste1.clickOn()
+        expect(anzeige.textContent).toBe('1')
+        var tasteCE = new Taste()
+        tasteCE.onclickFunction = viewModel.onTasteCEClicked
+        tasteCE.clickOn()
+        expect(anzeige.textContent).toBe('0')
+        textFuerAnzeige = 0
+        viewModel.render()
+    })
+
+    it("muss das Resultat in der Anzeige anzeigen koennen", function(){
+        var viewModel = new ViewModel()
+        viewModel.render() 
+        var taste3 = new Taste()
+        taste3.onclickFunction = viewModel.onTasteNumberClicked
+        taste3.tastenText = '5'
+        taste3.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        var tasteOperator = new Taste()
+        tasteOperator.onclickFunction = viewModel.onTasteOperatorClicked
+        tasteOperator.tastenText = '*'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        var taste3 = new Taste()
+        taste3.onclickFunction = viewModel.onTasteNumberClicked
+        taste3.tastenText = '3'
+        taste3.clickOn()
+        expect(anzeige.textContent).toBe('3')
+        var tasteGleich = new Taste()
+        tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
+        tasteGleich.clickOn()
+        expect(anzeige.textContent).toBe('15')
+        textFuerAnzeige = 0
+        viewModel.render()
+    })
+
+    it("muss das Quadrat einer Zahl in der Anzeige anzeigen koennen", function(){
+        var viewModel = new ViewModel()
+        viewModel.render() 
+        var taste3 = new Taste()
+        taste3.onclickFunction = viewModel.onTasteNumberClicked
+        taste3.tastenText = '3'
+        taste3.clickOn()
+        expect(anzeige.textContent).toBe('3')
+        var tasteQuadrat = new Taste()
+        tasteQuadrat.onclickFunction = viewModel.onTasteQuadratClicked
+        tasteQuadrat.clickOn()
+        expect(anzeige.textContent).toBe('9')
+        textFuerAnzeige = 0
+        viewModel.render()
+    })
+
+    it("muss die zuletzt eingegebene Ziffer löschen koennen", function(){
+        var viewModel = new ViewModel()
+        viewModel.render() 
+        var taste2 = new Taste()
+        taste2.onclickFunction = viewModel.onTasteNumberClicked
+        taste2.tastenText = '2'
+        taste2.clickOn()
+        expect(anzeige.textContent).toBe('2')
+        var taste3 = new Taste()
+        taste3.onclickFunction = viewModel.onTasteNumberClicked
+        taste3.tastenText = '3'
+        taste3.clickOn()
+        expect(anzeige.textContent).toBe('23')
+        var tasteBackspace = new Taste()
+        tasteBackspace.onclickFunction = viewModel.onTasteBackspaceClicked
+        tasteBackspace.clickOn()
+        expect(anzeige.textContent).toBe('2')
+        textFuerAnzeige = 0
+        viewModel.render()
+    })
 })

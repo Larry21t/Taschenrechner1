@@ -8,6 +8,7 @@ class Taste{
     set onclickFunction()
     get tastenElement()
     get tastenText()
+    clickOn()
 }
 
 class Anzeige{
