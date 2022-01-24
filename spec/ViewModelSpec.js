@@ -101,6 +101,9 @@ describe("ViewModel", function(){
         tasteNegativ.tastenText = '-'
         tasteNegativ.clickOn()
         expect(anzeige.textContent).toBe('-12.1')
+        zahl1 = undefined //werden auf undefinded gesetzt, weil sonst noch irgendwelche Werte darin gespeichert sind und evtl. mit diesen weitergerechnet wird, wenn die Specs alle durchlaufen sind
+        zahl2 = undefined
+        operator = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -117,6 +120,9 @@ describe("ViewModel", function(){
         tasteCE.onclickFunction = viewModel.onTasteCEClicked
         tasteCE.clickOn()
         expect(anzeige.textContent).toBe('0')
+        zahl1 = undefined
+        zahl2 = undefined
+        operator = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -156,6 +162,9 @@ describe("ViewModel", function(){
         expect(anzeige.textContent).toBe('40')
         tasteGleich.clickOn()
         expect(anzeige.textContent).toBe('40')
+        zahl1 = undefined
+        zahl2 = undefined
+        operator = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -178,6 +187,9 @@ describe("ViewModel", function(){
         tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
         tasteGleich.clickOn()
         expect(anzeige.textContent).toBe('81')
+        zahl1 = undefined
+        zahl2 = undefined
+        operator = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -199,7 +211,49 @@ describe("ViewModel", function(){
         tasteBackspace.onclickFunction = viewModel.onTasteBackspaceClicked
         tasteBackspace.clickOn()
         expect(anzeige.textContent).toBe('2')
+        zahl1 = undefined
+        zahl2 = undefined
+        operator = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
+
+    it("muss das Resultat von mehr als 2 Zahlen, die miteinander verechnet worden sind, anzeigen koennen", function(){
+        var viewModel = new ViewModel()
+        viewModel.render() 
+        var taste2 = new Taste()
+        taste2.onclickFunction = viewModel.onTasteNumberClicked
+        taste2.tastenText = '2'
+        taste2.clickOn()
+        expect(anzeige.textContent).toBe('2')
+        var tasteOperator = new Taste()
+        tasteOperator.onclickFunction = viewModel.onTasteOperatorClicked
+        tasteOperator.tastenText = '+'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('2')
+        var taste5 = new Taste()
+        taste5.onclickFunction = viewModel.onTasteNumberClicked
+        taste5.tastenText = '5'
+        taste5.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('7')
+        taste2.clickOn()
+        expect(anzeige.textContent).toBe('2')
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('9')
+        taste5.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        var tasteGleich = new Taste()
+        tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
+        tasteGleich.clickOn()
+        expect(anzeige.textContent).toBe('14')
+        zahl1 = undefined
+        zahl2 = undefined
+        operator = undefined
+        textFuerAnzeige = 0
+        viewModel.render()
+    })
+
+  
 })

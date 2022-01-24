@@ -196,9 +196,22 @@ class ViewModel{
     }
 
     onTasteOperatorClicked(){
-        zahl1 = textFuerAnzeige
-        operator = this.textContent
-        textFuerAnzeige = 0
+        if(operator == undefined){
+            zahl1 = textFuerAnzeige
+            operator = this.textContent
+            textFuerAnzeige = 0
+        }
+        else{
+            zahl2 = textFuerAnzeige
+            var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
+            taschenrechnerVerarbeitung.perform()
+            textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
+            viewModel.render()
+            zahl1 = textFuerAnzeige
+            operator = this.textContent
+            textFuerAnzeige = 0
+        }
+        
     }
 
     onTasteQuadratClicked(){
