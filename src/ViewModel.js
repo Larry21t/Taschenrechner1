@@ -3,6 +3,8 @@ var viewModel
 var zahl1
 var zahl2
 var operator
+var zahl3
+var operator2
 class ViewModel{  
     render(){
         var body = document.getElementsByTagName("body")[0]
@@ -184,6 +186,12 @@ class ViewModel{
 
     onTasteGleichClicked(){
         viewModel = new ViewModel()
+        if(operator2 !== undefined){
+            zahl3 = textFuerAnzeige
+            var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl2, operator2, zahl3)
+            taschenrechnerVerarbeitung.perform()
+            textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
+        }
         zahl2 = textFuerAnzeige
         var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
         taschenrechnerVerarbeitung.perform()
@@ -191,27 +199,63 @@ class ViewModel{
         if(operator == undefined){ 
             textFuerAnzeige = zahl2 
         }
+        zahl1 = textFuerAnzeige
         operator = undefined
+        zahl2 = undefined
+        operator2 = undefined
+        zahl3 = undefined
         viewModel.render()
     }
 
+    
     onTasteOperatorClicked(){
         if(operator == undefined){
             zahl1 = textFuerAnzeige
             operator = this.textContent
             textFuerAnzeige = 0
         }
-        else{
-            zahl2 = textFuerAnzeige
-            var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
-            taschenrechnerVerarbeitung.perform()
-            textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
-            viewModel.render()
-            zahl1 = textFuerAnzeige
-            operator = this.textContent
-            textFuerAnzeige = 0
-        }
-        
+        else{ // Was ab hier bis zu onTasteQuadratClicked(){} folgt, wird für Punkt vor Strich gebraucht und damit mehrere Zahlen miteinander verrechnet werden können
+            if(operator == '*' || operator == '/'){
+                zahl2 = textFuerAnzeige
+                var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
+                taschenrechnerVerarbeitung.perform()
+                textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
+                viewModel.render()
+                zahl1 = textFuerAnzeige
+                operator = this.textContent
+                textFuerAnzeige = 0
+            
+            }
+            else{
+                if(operator2 == '*' || operator2 == '/'){
+                    zahl3 = textFuerAnzeige
+                    var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl2, operator2, zahl3)
+                    taschenrechnerVerarbeitung.perform()
+                    textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
+                    viewModel.render() 
+                    zahl2 = textFuerAnzeige
+                    operator2 = this.textContent
+                    zahl3 = undefined
+                }
+                var neuerOperator = this.textContent
+                if(neuerOperator == '+' || neuerOperator == '-'){ 
+                    zahl2 = textFuerAnzeige
+                    var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
+                    taschenrechnerVerarbeitung.perform()
+                    textFuerAnzeige = taschenrechnerVerarbeitung.getResult()
+                    viewModel.render()
+                    zahl1 = textFuerAnzeige
+                    operator = neuerOperator
+                    zahl2 = undefined
+                    operator2 = undefined
+                }
+                else{ 
+                    operator2 = this.textContent
+                    zahl2 = textFuerAnzeige 
+                }
+                textFuerAnzeige = 0 
+            }       
+        }   
     }
 
     onTasteQuadratClicked(){
@@ -235,7 +279,9 @@ class ViewModel{
         textFuerAnzeige = 0
         zahl1 = undefined
         zahl2 = undefined
+        zahl3 = undefined
         operator = undefined
+        operator2 = undefined
         viewModel.render()
     }
 

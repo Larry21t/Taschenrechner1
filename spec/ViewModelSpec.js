@@ -103,7 +103,9 @@ describe("ViewModel", function(){
         expect(anzeige.textContent).toBe('-12.1')
         zahl1 = undefined //werden auf undefinded gesetzt, weil sonst noch irgendwelche Werte darin gespeichert sind und evtl. mit diesen weitergerechnet wird, wenn die Specs alle durchlaufen sind
         zahl2 = undefined
+        zahl3 = undefined
         operator = undefined
+        operator2 = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -120,9 +122,11 @@ describe("ViewModel", function(){
         tasteCE.onclickFunction = viewModel.onTasteCEClicked
         tasteCE.clickOn()
         expect(anzeige.textContent).toBe('0')
-        zahl1 = undefined
+        zahl1 = undefined 
         zahl2 = undefined
+        zahl3 = undefined
         operator = undefined
+        operator2 = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -162,9 +166,11 @@ describe("ViewModel", function(){
         expect(anzeige.textContent).toBe('40')
         tasteGleich.clickOn()
         expect(anzeige.textContent).toBe('40')
-        zahl1 = undefined
+        zahl1 = undefined 
         zahl2 = undefined
+        zahl3 = undefined
         operator = undefined
+        operator2 = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -187,9 +193,11 @@ describe("ViewModel", function(){
         tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
         tasteGleich.clickOn()
         expect(anzeige.textContent).toBe('81')
-        zahl1 = undefined
+        zahl1 = undefined 
         zahl2 = undefined
+        zahl3 = undefined
         operator = undefined
+        operator2 = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -211,9 +219,11 @@ describe("ViewModel", function(){
         tasteBackspace.onclickFunction = viewModel.onTasteBackspaceClicked
         tasteBackspace.clickOn()
         expect(anzeige.textContent).toBe('2')
-        zahl1 = undefined
+        zahl1 = undefined 
         zahl2 = undefined
+        zahl3 = undefined
         operator = undefined
+        operator2 = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
@@ -248,9 +258,96 @@ describe("ViewModel", function(){
         tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
         tasteGleich.clickOn()
         expect(anzeige.textContent).toBe('14')
-        zahl1 = undefined
+        zahl1 = undefined 
         zahl2 = undefined
+        zahl3 = undefined
         operator = undefined
+        operator2 = undefined
+        textFuerAnzeige = 0
+        viewModel.render()
+    })
+
+    it("muss Punkt-Vor-Strich beachten", function(){
+        var viewModel = new ViewModel()
+        viewModel.render() 
+        var taste7 = new Taste()
+        taste7.onclickFunction = viewModel.onTasteNumberClicked
+        taste7.tastenText = '7'
+        taste7.clickOn()
+        expect(anzeige.textContent).toBe('7')
+        var tasteOperator = new Taste()
+        tasteOperator.onclickFunction = viewModel.onTasteOperatorClicked
+        tasteOperator.tastenText = '+'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('7')
+        var taste5 = new Taste()
+        taste5.onclickFunction = viewModel.onTasteNumberClicked
+        taste5.tastenText = '5'
+        taste5.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        tasteOperator.tastenText = '*'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        taste7.clickOn()
+        expect(anzeige.textContent).toBe('7')
+        taste5.clickOn()
+        expect(anzeige.textContent).toBe('75')
+        tasteOperator.tastenText = '-'
+        tasteOperator.clickOn()
+        var taste6 = new Taste()
+        taste6.onclickFunction = viewModel.onTasteNumberClicked
+        taste6.tastenText = '6'
+        taste6.clickOn()
+        expect(anzeige.textContent).toBe('6')
+        tasteOperator.tastenText = '/'
+        tasteOperator.clickOn()
+        var taste3 = new Taste()
+        taste3.onclickFunction = viewModel.onTasteNumberClicked
+        taste3.tastenText = '3'
+        taste3.clickOn()
+        expect(anzeige.textContent).toBe('3')
+        var tasteGleich = new Taste()
+        tasteGleich.onclickFunction = viewModel.onTasteGleichClicked
+        tasteGleich.clickOn()
+        expect(anzeige.textContent).toBe('380')
+        tasteOperator.tastenText = '/'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('380')
+        var taste1 = new Taste()
+        taste1.onclickFunction = viewModel.onTasteNumberClicked
+        taste1.tastenText = '1'
+        taste1.clickOn()
+        expect(anzeige.textContent).toBe('1')
+        var taste0 = new Taste()
+        taste0.onclickFunction = viewModel.onTasteNumberClicked
+        taste0.tastenText = '0'
+        taste0.clickOn()
+        expect(anzeige.textContent).toBe('10')
+        tasteOperator.tastenText = '+'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('38')
+        taste3.clickOn()
+        expect(anzeige.textContent).toBe('3')
+        tasteOperator.tastenText = '*'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('3')
+        taste5.clickOn()
+        expect(anzeige.textContent).toBe('5')
+        taste0.clickOn()
+        expect(anzeige.textContent).toBe('50')
+        tasteOperator.tastenText = '-'
+        tasteOperator.clickOn()
+        expect(anzeige.textContent).toBe('188')
+        taste7.clickOn()
+        expect(anzeige.textContent).toBe('7')
+        tasteGleich.clickOn()
+        expect(anzeige.textContent).toBe('181')
+
+        zahl1 = undefined 
+        zahl2 = undefined
+        zahl3 = undefined
+        operator = undefined
+        operator2 = undefined
         textFuerAnzeige = 0
         viewModel.render()
     })
