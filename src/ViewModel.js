@@ -207,14 +207,12 @@ class ViewModel{
         viewModel.render()
     }
 
-    
     onTasteOperatorClicked(){
         if(operator == undefined){
             zahl1 = textFuerAnzeige
             operator = this.textContent
-            textFuerAnzeige = 0
         }
-        else{ // Was ab hier bis zu onTasteQuadratClicked(){} folgt, wird für Punkt vor Strich gebraucht und damit mehrere Zahlen miteinander verrechnet werden können
+        else{ // Was ab hier bis zu onTasteQuadratClicked(){} folgt, wird für die Punkt-vor-Strich Regel gebraucht und damit mehrere Zahlen miteinander verrechnet werden können, ohne dass man dazwischen immer auf die Gleich-Taste drücken muss
             if(operator == '*' || operator == '/'){
                 zahl2 = textFuerAnzeige
                 var taschenrechnerVerarbeitung = new TaschenrechnerVerarbeitung(zahl1, operator, zahl2)
@@ -223,8 +221,6 @@ class ViewModel{
                 viewModel.render()
                 zahl1 = textFuerAnzeige
                 operator = this.textContent
-                textFuerAnzeige = 0
-            
             }
             else{
                 if(operator2 == '*' || operator2 == '/'){
@@ -253,9 +249,9 @@ class ViewModel{
                     operator2 = this.textContent
                     zahl2 = textFuerAnzeige 
                 }
-                textFuerAnzeige = 0 
             }       
         }   
+        textFuerAnzeige = 0
     }
 
     onTasteQuadratClicked(){
@@ -287,12 +283,14 @@ class ViewModel{
 
     onTasteBackspaceClicked(){
         textFuerAnzeige = textFuerAnzeige.toString()
-        textFuerAnzeige = textFuerAnzeige.substring(0, textFuerAnzeige.length -1)
+        if(textFuerAnzeige.length !== 1){
+            textFuerAnzeige = textFuerAnzeige.substring(0, textFuerAnzeige.length -1)
+        }
+        else{
+            textFuerAnzeige = 0
+        }
         viewModel.render()
     }
-
-
     //evtl. könnte man render() verbessern indem man ein Array für alle Zahlentasten macht und anschliessend mit forEach() oder einer Schleife die Eigenschaften der Zahlentasten festlegt
     //sonst muss für jede Taste einzeln immer new Taste() gemacht und die Eigenschaften festgelegt werden.
-
 }
