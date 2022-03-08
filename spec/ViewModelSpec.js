@@ -75,10 +75,16 @@ describe("ViewModel", function(){
         expect(body).toHaveAChildnode("DIV", "#anzeige")
     })
 
-    //Die Tests oberhalb von hier testen das GUI
+    //Die Tests oberhalb von hier testen ob das GUI korrekt gerendert wurde
     it("muss Zahlen in die Anzeige schreiben koennen", function(){
         var viewModel = new ViewModel()
-        viewModel.render() 
+        viewModel.render()
+        expect(anzeige.textContent).toBe('0')
+        var taste0 = new Taste()
+        taste0.onclickFunction = viewModel.onTasteNumberClicked
+        taste0.tastenText = '0'
+        taste0.clickOn()
+        expect(anzeige.textContent).toBe('0')
         var taste1 = new Taste()
         taste1.onclickFunction = viewModel.onTasteNumberClicked
         taste1.tastenText = '1'
